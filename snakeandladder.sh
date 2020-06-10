@@ -2,13 +2,32 @@
 
 echo "Welcome to Snake and Ladder simulator"
 
-player=1
-position=0
+INITIAL_POSITION=0
+NO_PLAY=0
+SNAKE=1
+LADDER=2
 
-function roll()
+player=1
+playerPosition=$INITIAL_POSITION
+
+function game()
 {
-	num=$(( RANDOM % 6 + 1))
+
+	dieNum=$(( RANDOM % 6 + 1))
+	option=$(( RANDOM % 3 ))
+
+	case $option in
+	$NO_PLAY)
+		playerPosition=$(( playerPosition + 0 ))
+		;;
+	$SNAKE)
+                playerPosition=$(( playerPosition - dieNum ))
+		;;
+	$LADDER)
+                playerPosition=$(( playerPosition + dieNum ))
+		;;
+	esac
 }
 
-roll
-echo "Die number - $num"
+game
+echo "Player Position - $playerPosition"
