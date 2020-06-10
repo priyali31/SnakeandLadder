@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 echo "Welcome to Snake and Ladder simulator"
 
@@ -12,6 +12,9 @@ LADDER=2
 #Variables
 player=1
 playerPosition=$INITIAL_POSITION
+dieRolls=0
+
+declare -A positionHistory
 
 function game()
 {
@@ -24,12 +27,17 @@ function game()
 		playerPosition=$(( playerPosition + $NO_PLAY ))
 		;;
 	$SNAKE)
-                playerPosition=$(( playerPosition - dieNum ))
+		if [ $(( playerPosition-dieNum )) -lt $INITIAL_POSITION ]
+                then
+                        playerPosition=$INITIAL_POSITION
+		else
+                	playerPosition=$(( playerPosition - dieNum ))
+		fi
 		;;
 	$LADDER)
 		if [ $(( playerPosition+dieNum )) -gt $WINNING_POSITION ]
 		then
-			playerPosition=$(( playerPosition-dieNum ))
+			playerPosition=$(( playerPosition - dieNum ))
 		else
                 	playerPosition=$(( playerPosition + dieNum ))
 		fi
@@ -42,6 +50,9 @@ function checkoutWin()
 	while ( true )
 	do
 	game
+	(( dieRolls++ ))
+	positionHistory[ "Roll $dieRolls" ]=$playerPosition
+
 		if [ $playerPosition -eq $WINNING_POSITION ]
 		then
 			break
@@ -55,3 +66,5 @@ function checkoutWin()
 #Main
 checkoutWin
 echo "position - $playerPosition"
+echo "${!positionHistory[@]} : ${positionHistory[@]}"
+echo "Die total Rolls : $dieRolls"
