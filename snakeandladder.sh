@@ -68,3 +68,4 @@ checkoutWin
 echo "position - $playerPosition"
 echo "${!positionHistory[@]} : ${positionHistory[@]}"
 echo "Die total Rolls : $dieRolls"
+
