@@ -29,5 +29,21 @@ function game()
 	esac
 }
 
-game
-echo "Player Position - $playerPosition"
+function checkWinningPosition()
+{
+
+	while ( true )
+	do
+	game
+		if [ $playerPosition -eq 100 ]
+		then
+			break
+		elif [ $playerPosition -lt 0 ]
+		then
+			playerPosition=0
+		fi
+	done
+}
+
+checkWinningPosition
+echo "position - $playerPosition"
