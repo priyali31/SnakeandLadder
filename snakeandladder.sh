@@ -73,7 +73,6 @@ function switchPlayer()
    while [ true ]
    dieRoll
    (( switchTurn++ ))
-
    do
       if [ $(( switchTurn%2 )) -eq 1 ]
       then
