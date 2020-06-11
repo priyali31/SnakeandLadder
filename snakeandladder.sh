@@ -96,5 +96,4 @@ function switchPlayer()
    done
 }
 
-#Main
 switchPlayer
