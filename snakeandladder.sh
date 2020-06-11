@@ -83,13 +83,13 @@ function switchPlayer()
 	break
 	fi
       elif [ $(( switchTurn%2 )) -eq 0 ]
-      then
+        then
         if [ $playerPosition -eq $WINNING_POSITION ]
         then
              echo "Player 2 Won"
         break
         fi
-       fi
+      fi
    done
 }
 switchPlayer
