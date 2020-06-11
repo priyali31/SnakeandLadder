@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -x 
 
 echo "Welcome to Snake and Ladder simulator"
 
@@ -95,6 +95,4 @@ function switchPlayer()
        fi
    done
 }
-
-#Main
 switchPlayer
